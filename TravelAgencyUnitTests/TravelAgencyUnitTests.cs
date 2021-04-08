@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using TravelAgencyProject;
 using Xunit;
 
@@ -7,13 +6,17 @@ namespace TravelAgencyUnitTests
 {
     public class EmployeeTest
     {
-        private string defaultFirstName = "Tim";
-        private string defaultSurname = "Logan";
+        private const string defaultFirstName = "Tim";
+        private const string defaultSurname = "Logan";
 
         [Fact]
         public void GetEmployeesFirstNameAndSurname()
         {
-            var employee = new Employee(defaultFirstName, defaultSurname, null);
+            var employee = new Employee
+            {
+                FirstName = defaultFirstName,
+                Surname = defaultSurname
+            };
 
             Assert.Equal(defaultFirstName, employee.FirstName);
             Assert.Equal(defaultSurname, employee.Surname);
@@ -22,21 +25,29 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void CheckEmployeeHasAnEmptyGuid()
         {
-            var employee = new Employee(defaultFirstName, defaultSurname, null);
+            var employee = new Employee
+            {
+                FirstName = defaultFirstName,
+                Surname = defaultSurname
+            };
 
-            Assert.NotEqual(Guid.Empty, employee.Id);
+            Assert.Equal(Guid.Empty, employee.Id);
         }
     }
 
     public class CustomerTest
     {
-        private string defaultFirstName = "Tim";
-        private string defaultSurname = "Logan";
+        private const string defaultFirstName = "Tim";
+        private const string defaultSurname = "Logan";
 
         [Fact]
         public void CheckCustomerIsAcceptingMarketingConstructor()
         {
-            var customer = new Customer(defaultFirstName, defaultSurname);
+            var customer = new Customer
+            {
+                FirstName = defaultFirstName,
+                Surname = defaultSurname
+            };
 
             Assert.True(customer.IsAcceptingMarketing);
         }
@@ -44,14 +55,19 @@ namespace TravelAgencyUnitTests
 
     public class HotelTest
     {
-        private string defaultHotelName = "Premier Inn";
-        private decimal defaultCostPerNight = 50;
-        private float defaultStarRating = 3;
+        private const string defaultHotelName = "Premier Inn";
+        private const decimal defaultCostPerNight = 50;
+        private const float defaultStarRating = 3;
 
         [Fact]
         public void GetsTheNameOfTheHotelName()
         {
-            var hotel = new Hotel(defaultHotelName, defaultCostPerNight, defaultStarRating);
+            var hotel = new Hotel
+            {
+                Name = defaultHotelName, 
+                CostPerNight = defaultCostPerNight, 
+                StarRating = defaultStarRating
+            };
 
             Assert.Equal(defaultHotelName, hotel.Name);
         }
@@ -59,15 +75,25 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void ChecksTheHotelHasAnEmptyGuid()
         {
-            var hotel = new Hotel(defaultHotelName, defaultCostPerNight, defaultStarRating);
+            var hotel = new Hotel
+            {
+                Name = defaultHotelName,
+                CostPerNight = defaultCostPerNight,
+                StarRating = defaultStarRating
+            };
 
-            Assert.NotEqual(Guid.Empty, hotel.Id);
+            Assert.Equal(Guid.Empty, hotel.Id);
         }
 
         [Fact]
         public void GetsTheCostPerNightOfTheHotel()
         {
-            var hotel = new Hotel(defaultHotelName, defaultCostPerNight, defaultStarRating);
+            var hotel = new Hotel
+            {
+                Name = defaultHotelName,
+                CostPerNight = defaultCostPerNight,
+                StarRating = defaultStarRating
+            };
 
             Assert.Equal(defaultCostPerNight, hotel.CostPerNight);
         }
@@ -75,7 +101,12 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void GetsTheStarRatingOfTheHotel()
         {
-            var hotel = new Hotel(defaultHotelName, defaultCostPerNight, defaultStarRating);
+            var hotel = new Hotel
+            {
+                Name = defaultHotelName,
+                CostPerNight = defaultCostPerNight,
+                StarRating = defaultStarRating
+            };
 
             Assert.Equal(defaultStarRating, hotel.StarRating);
         }
@@ -86,19 +117,17 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void CheckThatEmployeeListIsPopulated()
         {
-            // arrange
             var agency = new Agency();
 
-            var employeeData = new List<Employee>
-            {
-                new Employee("Tom", "Riddle", Guid.Parse("6eee7bea-0c7d-4b97-a106-254b4a0ba3ca")),
-                new Employee("Sarah", "Coffee", Guid.Parse("e71599c2-20e1-47bc-92cb-3b02e5db21a5")),
-                new Employee("Amir", "King", Guid.Parse("b27a089e-6a6b-46a5-9c76-b6648a671183"))
-            };
+            Assert.True(agency.Employees.Count > 0);
+        }
 
-            // assert
+        [Fact]
+        public void CheckThatHotelListIsPopulated()
+        {
+            var agency = new Agency();
 
-            Assert.Equal(employeeData, agency.Employees);
+            Assert.True(agency.Hotels.Count > 0);
         }
     } 
 }
