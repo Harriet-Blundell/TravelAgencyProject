@@ -4,6 +4,7 @@ namespace TravelAgencyProject
 {
     public class ConsoleService
     {
+        string name;
 
         public void Question()
         {
@@ -12,8 +13,15 @@ namespace TravelAgencyProject
 
         public void UserInputAndResponse()
         {
-            string name = Console.ReadLine();
+            name = Console.ReadLine();
             Console.WriteLine($"It is very nice to meet you, {name}");
+        }
+
+        public void ChooseOptions()
+        {
+            Console.WriteLine($"I have an important question for you, {name}");
+            
+
         }
     }
 }

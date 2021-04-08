@@ -11,8 +11,8 @@ namespace TravelAgencyProject
 
         public Agency()
         {
-            var employeeJsonFilePath = File.ReadAllText(@"data\employees.json");
-            var hotelJsonFilePath = File.ReadAllText(@"data\hotels.json");
+            var employeeJsonFilePath = File.ReadAllText(@"data/employees.json");
+            var hotelJsonFilePath = File.ReadAllText(@"data/hotels.json");
 
             var employeeData = JsonSerializer.Deserialize<List<Employee>>(employeeJsonFilePath);
             var hotelData = JsonSerializer.Deserialize<List<Hotel>>(hotelJsonFilePath);
