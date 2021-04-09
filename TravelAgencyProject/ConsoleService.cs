@@ -17,7 +17,7 @@ namespace TravelAgencyProject
             Console.WriteLine($"It is very nice to meet you, {name}");
         }
 
-        public void ChooseOptions()
+        public void DisplayMenu()
         {
             Console.WriteLine($"I have an important question for you, {name}");
             

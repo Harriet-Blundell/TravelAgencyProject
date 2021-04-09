@@ -6,14 +6,14 @@ namespace TravelAgencyProject
     {
         static void Main(string[] args)
         {
-            int milliseconds = 2000;
+            int milliseconds = 1000;
 
             var console = new ConsoleService();
             console.Question();
             console.UserInputAndResponse();
             
             Thread.Sleep(milliseconds);
-            console.ChooseOptions();
+            console.DisplayMenu();
         }
     }
 }
