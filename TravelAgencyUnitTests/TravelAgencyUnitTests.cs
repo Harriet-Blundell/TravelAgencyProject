@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Moq;
 using TravelAgencyProject;
 using Xunit;
 
@@ -117,17 +119,62 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void CheckThatEmployeeListIsPopulated()
         {
-            var agency = new Agency();
+            // mocking ILoadData
+            var mock = new Mock<ILoadData>();
 
-            Assert.True(agency.Employees.Count > 0);
+            // Create employee data
+            var employee1 = new Employee
+            {
+                FirstName = "John",
+                Surname = "Dillon"
+            };
+
+
+            var employee2 = new Employee
+            {
+                FirstName = "Pope",
+                Surname = "Francis"
+            };
+
+            var listOfEmployees = new List<Employee>()
+            {
+                employee1,
+                employee2
+            };
+
+            mock.Setup(employee => employee.LoadEmployeeJsonData()).Returns(listOfEmployees);
+
         }
 
         [Fact]
         public void CheckThatHotelListIsPopulated()
         {
-            var agency = new Agency();
+            // mock ILoadData
+            var mock = new Mock<ILoadData>();
 
-            Assert.True(agency.Hotels.Count > 0);
+            // create hotel data
+            var hotel1 = new Hotel
+            {
+                Name = "Premier Inn",
+                CostPerNight = 35,
+                StarRating = 4
+            };
+
+            var hotel2 = new Hotel
+            {
+                Name = "Hotel Bond",
+                CostPerNight = 40,
+                StarRating = 4
+            };
+
+            var listOfHotels = new List<Hotel>()
+            {
+                hotel1,
+                hotel2
+            };
+
+            mock.Setup(hotel => hotel.LoadHotelJsonData()).Returns(listOfHotels);
+
         }
     } 
 }

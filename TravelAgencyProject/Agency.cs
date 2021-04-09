@@ -12,28 +12,38 @@ namespace TravelAgencyProject
 
         public Agency(ILoadData loadData)
         {
-            Employees = loadData.LoadEmployeeJsonData();
-            Hotels = loadData.LoadHotelJsonData();
+            Employees = GetEmployeeData();
+            Hotels = GetHotelData();
+            _ILoadData = loadData;
+        }
+
+        public List<Employee> GetEmployeeData()
+        {
+            return _ILoadData.LoadEmployeeJsonData();
+        }
+
+        public List<Hotel> GetHotelData()
+        {
+            return _ILoadData.LoadHotelJsonData();
         }
     }
 
+    // using an interface as a blueprint for the class
     public interface ILoadData
     {
         List<Employee> LoadEmployeeJsonData();
         List<Hotel> LoadHotelJsonData();
     }
 
+    // JsonFunctionality inherits from ILoadData to implement the interfaces
     public class JsonFunctionality : ILoadData
     {
-        // 2 methods
-
         public List<Employee> LoadEmployeeJsonData()
         {
             var employeeJsonFilePath = File.ReadAllText(@"data/employees.json");
             var employeeData = JsonSerializer.Deserialize<List<Employee>>(employeeJsonFilePath);
 
             return employeeData;
-
         }
 
         public List<Hotel> LoadHotelJsonData()
@@ -49,7 +59,5 @@ namespace TravelAgencyProject
 
 
 // create an interface
-
-
 // Separate all JSON-loading functionality into a separate class,
 // then use an instance of that class to load your data
