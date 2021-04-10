@@ -13,7 +13,7 @@ namespace TravelAgencyProject
             console.UserInputAndResponse();
             
             Thread.Sleep(milliseconds);
-            console.DisplayMenu();
+            console.DisplayOptions();
         }
     }
 }

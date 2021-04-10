@@ -48,7 +48,7 @@ namespace TravelAgencyUnitTests
             var customer = new Customer
             {
                 FirstName = defaultFirstName,
-                Surname = defaultSurname
+                Surname = defaultSurname,
             };
 
             Assert.True(customer.IsAcceptingMarketing);
@@ -174,7 +174,6 @@ namespace TravelAgencyUnitTests
             };
 
             mock.Setup(hotel => hotel.LoadHotelJsonData()).Returns(listOfHotels);
-
         }
     } 
 }

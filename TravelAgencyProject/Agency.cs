@@ -12,19 +12,9 @@ namespace TravelAgencyProject
 
         public Agency(ILoadData loadData)
         {
-            Employees = GetEmployeeData();
-            Hotels = GetHotelData();
+            Employees = _ILoadData.LoadEmployeeJsonData();
+            Hotels = _ILoadData.LoadHotelJsonData();
             _ILoadData = loadData;
-        }
-
-        public List<Employee> GetEmployeeData()
-        {
-            return _ILoadData.LoadEmployeeJsonData();
-        }
-
-        public List<Hotel> GetHotelData()
-        {
-            return _ILoadData.LoadHotelJsonData();
         }
     }
 
