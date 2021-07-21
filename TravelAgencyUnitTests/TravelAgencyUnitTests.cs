@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Moq;
 using TravelAgencyProject;
 using Xunit;
@@ -45,7 +46,7 @@ namespace TravelAgencyUnitTests
         [Fact]
         public void CheckCustomerIsAcceptingMarketingConstructor()
         {
-            var customer = new Customer
+            var customer = new Customer(true)
             {
                 FirstName = defaultFirstName,
                 Surname = defaultSurname,
@@ -142,7 +143,7 @@ namespace TravelAgencyUnitTests
                 employee2
             };
 
-            mock.Setup(employee => employee.LoadEmployeeJsonData()).Returns(listOfEmployees);
+            mock.Setup(employee => employee.LoadEmployeeJsonData()).Returns(Task.FromResult(listOfEmployees));
 
         }
 
@@ -173,7 +174,7 @@ namespace TravelAgencyUnitTests
                 hotel2
             };
 
-            mock.Setup(hotel => hotel.LoadHotelJsonData()).Returns(listOfHotels);
+            mock.Setup(hotel => hotel.LoadHotelJsonData()).Returns(Task.FromResult(listOfHotels));
         }
     } 
 }

@@ -28,12 +28,12 @@ namespace TravelAgencyProject
             Console.Write("Your option: ");
             //var choice = Console.ReadLine();
 
-            //var agency = new Agency();
 
             switch (Console.ReadLine())
             {
                 case "A":
                     // do something here
+                    
                     break;
                 case "B":
                     // do something here
